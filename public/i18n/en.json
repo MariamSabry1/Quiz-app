@@ -346,7 +346,7 @@
     "home": "Home",
     "quizzes": "Quizzes",
     "code": "Code",
-"group": "Group",
+    "group": "Group",
     "duration": "Duration",
     "minutes": "minutes",
     "number_of_questions": "Number of questions",
@@ -406,7 +406,9 @@
   "learnerDashboard": {
     "welcome": "Welcome back,",
     "subtitle": "Continue your learning journey and complete your upcoming quizzes.",
-    "ExploreBtn": "Explore Quizzes"
+    "ExploreBtn": "Explore All Quizzes",
+    "upcomingQuizzes": "Upcoming Quizzes"
+
   }
 ,
   "result_details": {

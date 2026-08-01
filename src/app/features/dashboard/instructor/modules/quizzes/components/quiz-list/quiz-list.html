@@ -21,7 +21,9 @@
 
       <div class="right-column flex flex-column gap-4 flex-1">
         <!--  Upcoming Quizzes Box -->
-        <quiz-app-dashboard-widget [title]="upcomingQuizzes().length + '&nbsp; quizzes'">
+        <quiz-app-dashboard-widget
+          [title]="'upcoming &nbsp;' + upcomingQuizzes().length + '&nbsp; quizzes'"
+        >
           <div class="flex flex-column gap-3">
             @for (quiz of upcomingQuizzes(); track quiz._id) {
               <quiz-app-upcoming-quizzes-card

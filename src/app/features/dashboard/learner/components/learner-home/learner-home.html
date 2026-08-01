@@ -1,16 +1,23 @@
-<div class="landding-page-container">
-  <div class="landing-page-content">
-    <div class="landing-page-header">
-      <h1>{{ 'learnerDashboard.welcome' | translate }} {{ fullName() }}! 👋</h1>
-      <p>{{ 'learnerDashboard.subtitle' | translate }}</p>
-    </div>
-    <div class="landing-page-actions">
-      <p-button
-        styleClass="action-btn"
-        [label]="'learnerDashboard.ExploreBtn' | translate"
-        [routerLink]="['/dashboard/learner/results']"
-      >
-      </p-button>
-    </div>
-  </div>
+<div class="landding-page flex flex-column gap-5">
+  <section class="landding-page__welcome">
+    <quiz-app-welcome-card></quiz-app-welcome-card>
+  </section>
+  @if (isLoading()) {
+    <app-loader></app-loader>
+  } @else {
+    <quiz-app-dashboard-widget
+      [title]="'learnerDashboard.upcomingQuizzes' | translate"
+      class="landding-page__upcoming-quizzes"
+    >
+      <div class="flex flex-column gap-3">
+        @for (quiz of upcomingQuizzes(); track quiz._id) {
+          <quiz-app-upcoming-quiz-card
+            [quiz]="quiz"
+            [showRouting]="false"
+            [imgSrc]="extractImageSrc()"
+          ></quiz-app-upcoming-quiz-card>
+        }
+      </div>
+    </quiz-app-dashboard-widget>
+  }
 </div>

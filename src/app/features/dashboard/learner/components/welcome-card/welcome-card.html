@@ -1,0 +1,14 @@
+<section>
+  <div class="landing-page-header">
+    <h1>{{ 'learnerDashboard.welcome' | translate }} {{ fullName() }}! 👋</h1>
+    <p>{{ 'learnerDashboard.subtitle' | translate }}</p>
+  </div>
+  <div class="landing-page-actions">
+    <p-button
+      styleClass="action-btn"
+      [label]="'learnerDashboard.ExploreBtn' | translate"
+      [routerLink]="['/dashboard/learner/quizzes']"
+    >
+    </p-button>
+  </div>
+</section>
