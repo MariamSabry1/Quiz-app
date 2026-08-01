@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
@@ -34,7 +34,7 @@ import { RoleEnum } from '../../../../core/enum/role.enum';
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.scss',
 })
-export class NavBar implements OnInit {
+export class NavBar implements OnInit, OnDestroy {
   private authService = inject(AuthService);
   private quizzesService = inject(QuizzesService);
   private groupsService = inject(GroupsService);
@@ -42,6 +42,12 @@ export class NavBar implements OnInit {
   private translate = inject(TranslateService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  roleEnum: RoleEnum = RoleEnum.Instructor;
+  currentTime = signal(new Date());
+
+  private timer = setInterval(() => {
+    this.currentTime.set(new Date());
+  }, 1000);
   userMenuItems: MenuItem[] = [
     { label: 'Profile', icon: 'pi pi-user' },
     { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.authService.logout() },
@@ -49,9 +55,7 @@ export class NavBar implements OnInit {
   showDialog = signal(false);
   addEditLoad = signal(false);
   groupsOptions = signal<GroupOption[]>([]);
-
   pageTitle = signal('Dashboard');
-
   userName = computed(() => this.authService.getCurrentUser()?.first_name ?? '');
   userRole = computed(() => this.authService.getCurrentUser()?.role ?? '');
   userInitials = computed(() => this.userName().charAt(0).toUpperCase());
@@ -106,5 +110,8 @@ export class NavBar implements OnInit {
         console.error(err);
       },
     });
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 }

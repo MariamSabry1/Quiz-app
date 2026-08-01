@@ -396,7 +396,8 @@
   "learnerDashboard": {
   "welcome": "مرحبًا بعودتك،",
   "subtitle": "تابع رحلتك التعليمية واستعد لاجتياز اختباراتك القادمة.",
-  "ExploreBtn": "استعرض الاختبارات"
+  "ExploreBtn": "استعرض كافه الاختبارات",
+  "upcomingQuizzes": "الاختبارات القادمة"
 },
   "result_details": {
     "results": "النتائج",

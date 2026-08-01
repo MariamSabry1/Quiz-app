@@ -406,7 +406,9 @@
   "learnerDashboard": {
     "welcome": "Welcome back,",
     "subtitle": "Continue your learning journey and complete your upcoming quizzes.",
-    "ExploreBtn": "Explore Quizzes"
+    "ExploreBtn": "Explore All Quizzes",
+    "upcomingQuizzes": "Upcoming Quizzes"
+
   }
 ,
   "result_details": {

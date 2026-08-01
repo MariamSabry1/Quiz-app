@@ -1,26 +1,38 @@
 @if (isLoadingQuizzes()) {
-<app-loader></app-loader>
+  <app-loader></app-loader>
 } @else {
-<div class="grid">
-  <div class="col-12 lg:col-6">
-    <quiz-app-dashboard-widget [title]="upcomingQuizzes().length + '&nbsp; quizzes'"
-      [actionLink]="'/dashboard/instructor/quizzes'" [actionLabel]="'Quiz directory'">
-      <div class="flex flex-column gap-3">
-        @for (quiz of upcomingQuizzes(); track quiz._id) {
-        <quiz-app-upcoming-quizzes-card [routingLink]="'quizzes/view-quiz'" [quiz]="quiz"></quiz-app-upcoming-quizzes-card>
-        }
-      </div>
-    </quiz-app-dashboard-widget>
+  <div class="grid">
+    <div class="col-12 lg:col-6">
+      <quiz-app-dashboard-widget
+        [title]="'upcoming &nbsp;' + upcomingQuizzes().length + '&nbsp; quizzes'"
+        [actionLink]="'/dashboard/instructor/quizzes'"
+        [actionLabel]="'Quiz directory'"
+      >
+        <div class="flex flex-column gap-3">
+          @for (quiz of upcomingQuizzes(); track quiz._id) {
+            <quiz-app-upcoming-quizzes-card
+              [routingLink]="'quizzes/view-quiz'"
+              [quiz]="quiz"
+            ></quiz-app-upcoming-quizzes-card>
+          }
+        </div>
+      </quiz-app-dashboard-widget>
+    </div>
+    <div class="col-12 lg:col-6">
+      <quiz-app-dashboard-widget
+        [title]="'upcoming &nbsp;' + topStudents().length + '&nbsp; Students'"
+        [actionLink]="'/dashboard/instructor/students'"
+        [actionLabel]="'All Students '"
+      >
+        <div class="flex flex-column gap-3">
+          @for (student of topStudents(); track student.id) {
+            <quiz-app-top-students-card
+              [student]="student"
+              [studentLink]="''"
+            ></quiz-app-top-students-card>
+          }
+        </div>
+      </quiz-app-dashboard-widget>
+    </div>
   </div>
-  <div class="col-12 lg:col-6">
-    <quiz-app-dashboard-widget [title]="topStudents().length + '&nbsp; Students'"
-      [actionLink]="'/dashboard/instructor/students'" [actionLabel]="'All Students '">
-      <div class="flex flex-column gap-3">
-        @for (student of topStudents(); track student.id) {
-        <quiz-app-top-students-card [student]="student" [studentLink]="''"></quiz-app-top-students-card>
-        }
-      </div>
-    </quiz-app-dashboard-widget>
-  </div>
-</div>
 }
