@@ -143,9 +143,11 @@ export class QuizStepper {
 
   // ── Submission ───────────────────────────────────────
   submitQuiz(): void {
-    const payload = this.questions().map((q) => ({
+    const payload = this.questions()
+    .filter((q) => !!this.selectedAnswers()[q._id]) // drop unanswered
+    .map((q) => ({
       question: q._id,
-      answer: this.selectedAnswers()[q._id] ?? "",
+      answer: this.selectedAnswers()[q._id] as QuestionAnswer,
     }));
     this.isLoading.set(true);
     this.examService.submitQuiz(this.quizId, { answers: payload }).subscribe({
@@ -174,6 +176,7 @@ export class QuizStepper {
       this.quizProgressService.clear(this.quizId);
     }
   }
+  
   // ── Quiz flow ─────────────
   startQuiz() {
     this.isQuizStarted.set(true)
@@ -184,7 +187,7 @@ export class QuizStepper {
     }
   }
 
-  // Shared error handling 
+  // Shared error handling
   private handleError(err: any): void {
     this.messageService.add({
       severity: 'error',
