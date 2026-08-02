@@ -1,16 +1,13 @@
 @if(loadingQuestions()){
-  <app-loader></app-loader>
+<app-loader></app-loader>
 }
 @else{
 <div class="card flex flex-column justify-center border-round-xl shadow-2 p-3 md:p-5 m-2 md:m-5">
-  <app-quiz-header [quizTitle]="quizData().title" 
-  [quizLevel]="quizData().difficulty" [quizType]="quizData().type"
-    [quizTime]="quizTimeInSeconds()" [isQuizStarted]="isQuizStarted()"
-    [currentQuestion]="activeStep()" 
-    [totalQuestions]="totalQuestions()" (timeUp)="onTimeUp()"
-    (timeChange)="onTimeChange($event)"  class="block mb-6" />
+  <app-quiz-header [quizTitle]="quizData().title" [quizLevel]="quizData().difficulty" [quizType]="quizData().type"
+    [quizTime]="quizTimeInSeconds()" [isQuizStarted]="isQuizStarted()" [currentQuestion]="activeStep()"
+    [totalQuestions]="totalQuestions()" (timeUp)="onTimeUp()" (timeChange)="onTimeChange($event)" class="block mb-6" />
 
-  <p-stepper [value]="activeStep()"  (valueChange)="onStepChange($event)" [linear]="true">
+  <p-stepper [value]="activeStep()" (valueChange)="onStepChange($event)" [linear]="true">
     <p-step-panels>
       @for (question of questions(); track question._id; let i = $index; let last = $last) {
       <p-step-panel [value]="i + 1">
@@ -19,7 +16,8 @@
           <div class="flex flex-column min-h-48 question-block">
 
             <div class="flex align-items-center gap-2 mb-4 question-block--heading">
-              <span class="flex align-items-center  justify-content-center w-2rem h-2rem border-round-lg text-primary-contrast font-bold text-sm flex-shrink-0">
+              <span
+                class="flex align-items-center  justify-content-center w-2rem h-2rem border-round-lg text-primary-contrast font-bold text-sm flex-shrink-0">
                 {{ i + 1 }}
               </span>
               <p class="font-bold text-lg m-0">{{ question.title }}</p>
@@ -64,25 +62,22 @@
             </p>
             }
           </div>
-
-          <div class="flex align-items-center pt-4" [class.justify-content-between]="i > 0"
+          <div class="navigation-buttons flex align-items-center pt-4" [class.justify-content-between]="i > 0"
             [class.justify-content-end]="i === 0">
             @if (i > 0) {
             <p-button label="{{ 'common.back' | translate }}" severity="secondary" icon="pi pi-arrow-left"
-              (onClick)="activateCallback(i)">
-            </p-button>
+              (onClick)="activateCallback(i)" />
             }
 
             @if (!last) {
             <p-button label="{{ 'common.next' | translate }}" icon="pi pi-arrow-right" iconPos="right"
-              styleClass="next-btn" [disabled]="!isAnswered(question._id)" (onClick)="activateCallback(i + 2)">
-            </p-button>
+              styleClass="next-btn" [disabled]="!isAnswered(question._id)" (onClick)="activateCallback(i + 2)" />
             } @else {
-            <p-button [loading]="isLoading()" label="{{ 'quiz_details.submit' | translate }}" icon="pi pi-check" iconPos="right" severity="success"
-              [disabled]="!isAnswered(question._id)" (onClick)="submitQuiz()">
-            </p-button>
+            <p-button [loading]="isLoading()" label="{{ 'quiz_details.submit' | translate }}" severity="success"
+              [disabled]="!isAnswered(question._id)" (onClick)="submitQuiz()" />
             }
           </div>
+
         </ng-template>
       </p-step-panel>
       }

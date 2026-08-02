@@ -100,3 +100,24 @@
 :host ::ng-deep .next-btn:focus {
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
 }
+
+// :host ::ng-deep [dir="rtl"] .navigation-buttons .p-button {
+//   display: flex;
+//   flex-direction: row-reverse;
+// }
+
+// :host ::ng-deep [dir="rtl"] .navigation-buttons .p-button .pi {
+//   transform: rotate(180deg);
+// }
+
+:host-context([dir='rtl']) {
+  ::ng-deep .navigation-buttons .p-button {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  ::ng-deep .navigation-buttons .p-button .pi {
+    transform: rotate(180deg);
+  }
+}
