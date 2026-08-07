@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 import { ExamService } from '../../services/exam.service';
 import { CompletedQuizzesWidget } from '../../../../../../../shared/components/dashboard/completed-quizzes-widget/completed-quizzes-widget';
 import { ButtonLinkerCard } from '../../../../../../../shared/components/dashboard/button-linker-card/button-linker-card';
-import { GroupsService } from '../../../../../instructor/modules/group/services/groups.service';
 @Component({
   imports: [
     DashboardWidget,
@@ -36,7 +35,6 @@ export class QuizHome implements OnInit {
   private translate = inject(TranslateService);
   private examService = inject(ExamService);
   private router = inject(Router);
-  private groupsService = inject(GroupsService);
   isLoading = signal(true);
   upcomingQuizzes = signal<IQuiz[]>([]);
   completedQuizzes = signal<IQuiz[]>([]);
@@ -85,8 +83,6 @@ export class QuizHome implements OnInit {
 
     this.examService.joinQuiz({ code }).subscribe({
       next: (res) => {
-        console.log(res);
-
         this.isJoining.set(false);
         this.closeJoinDialog();
         this.router.navigate(['current-quiz', res.data.quiz]);
@@ -98,9 +94,6 @@ export class QuizHome implements OnInit {
     });
   }
 
-  private getGroupName(groupId: string, groups: GroupOption[]): string {
-    return groups.find((g) => g.value === groupId)?.label || '-';
-  }
   loadUpcomingQuizzes() {
     this.isLoading.set(true);
     this.quizzesService.getFirstFiveIncomming().subscribe({

@@ -10,15 +10,13 @@ import { Button } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { filter } from 'rxjs';
 import { LanguageSwitcherComponent } from '../../../components/general/language-switcher/language-switcher.component';
-import {
-  GroupOption,
-  IQuizPayload,
-} from '../../../../features/dashboard/instructor/modules/quizzes/interfaces/quiz';
+import { GroupOption, IQuizPayload, } from '../../../../features/dashboard/instructor/modules/quizzes/interfaces/quiz';
 import { AddEditQuiz } from '../../../../features/dashboard/instructor/modules/quizzes/components/add-edit-quiz/add-edit-quiz';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { GroupsService } from '../../../../features/dashboard/instructor/modules/group/services/groups.service';
 import { QuizzesService } from '../../../../features/dashboard/instructor/modules/quizzes/services/quizzes.service';
 import { RoleEnum } from '../../../../core/enum/role.enum';
+import { QuizCodeDialog } from "../../../../features/dashboard/instructor/modules/quizzes/components/quiz-code-dialog/quiz-code-dialog";
 @Component({
   selector: 'app-nav-bar',
   imports: [
@@ -30,6 +28,8 @@ import { RoleEnum } from '../../../../core/enum/role.enum';
     MenuModule,
     LanguageSwitcherComponent,
     AddEditQuiz,
+    QuizCodeDialog,
+    TranslatePipe,
   ],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.scss',
@@ -49,16 +49,18 @@ export class NavBar implements OnInit, OnDestroy {
     this.currentTime.set(new Date());
   }, 1000);
   userMenuItems: MenuItem[] = [
-    { label: 'Profile', icon: 'pi pi-user' },
-    { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.authService.logout() },
+    { label: this.translate.instant('account.profile'), icon: 'pi pi-user' },
+    { label: this.translate.instant('account.logout'), icon: 'pi pi-sign-out', command: () => this.authService.logout() },
   ];
   showDialog = signal(false);
   addEditLoad = signal(false);
   groupsOptions = signal<GroupOption[]>([]);
-  pageTitle = signal('Dashboard');
+  pageTitle = signal('navigation.dashboard');
   userName = computed(() => this.authService.getCurrentUser()?.first_name ?? '');
   userRole = computed(() => this.authService.getCurrentUser()?.role ?? '');
   userInitials = computed(() => this.userName().charAt(0).toUpperCase());
+  showSuccessDialog = signal(false);
+  quizCode = signal<string>('');
 
   ngOnInit(): void {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
@@ -68,7 +70,7 @@ export class NavBar implements OnInit, OnDestroy {
         route = route.firstChild;
       }
 
-      this.pageTitle.set(route.snapshot.data['title'] ?? 'Dashboard');
+      this.pageTitle.set(route.snapshot.data['title'] ?? 'navigation.dashboard');
     });
     if (this.userRole() === RoleEnum.Instructor) {
       this.loadGroups();
@@ -87,13 +89,16 @@ export class NavBar implements OnInit, OnDestroy {
   openAddDialog(): void {
     this.showDialog.set(true);
   }
+
   saveQuiz(data: IQuizPayload): void {
     this.addEditLoad.set(true);
 
     this.quizzesService.createQuiz(data).subscribe({
-      next: () => {
+      next: (res) => {
         this.addEditLoad.set(false);
         this.showDialog.set(false);
+        this.showSuccessDialog.set(true);
+        this.quizCode.set(res.data.code);
         this.messageService.add({
           severity: 'success',
           summary: this.translate.instant('common.success'),

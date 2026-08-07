@@ -102,7 +102,12 @@
     "questions": "الأسئلة",
     "quizzes": "الاختبارات",
     "groups": "المجموعات",
-    "results": "النتائج"
+    "results": "النتائج",
+    "view_quiz": "عرض الاختبار",
+    "view_result": "عرض النتيجة"
+  },
+  "dashboard_layout": {
+    "new_quiz": "اختبار جديد"
   },
   "account": {
     "profile": "الملف الشخصي",
@@ -394,11 +399,11 @@
     "view": "عرض"
   },
   "learnerDashboard": {
-  "welcome": "مرحبًا بعودتك،",
-  "subtitle": "تابع رحلتك التعليمية واستعد لاجتياز اختباراتك القادمة.",
-  "ExploreBtn": "استعرض كافه الاختبارات",
-  "upcomingQuizzes": "الاختبارات القادمة"
-},
+    "welcome": "مرحبًا بعودتك،",
+    "subtitle": "تابع رحلتك التعليمية واستعد لاجتياز اختباراتك القادمة.",
+    "ExploreBtn": "استعرض كافه الاختبارات",
+    "upcomingQuizzes": "الاختبارات القادمة"
+  },
   "result_details": {
     "results": "النتائج",
     "student_name": "اسم الطالب",
@@ -415,7 +420,18 @@
     "validation": {
       "required": "هذه الخانة مطلوبه"
     },
-    "something_went_wrong": "آسف، حدث خطأ ما."
+    "something_went_wrong": "آسف، حدث خطأ ما.",
+    "failed_to_load_Quizzes": "فشل تحميل الاختبارات القادمة"
+  },
+  "quiz_code_dialog": {
+    "success_title": "تم إنشاء الاختبار بنجاح",
+    "code_label": "الكود"
+  },
+  "instructor_home": {
+    "upcoming_quizzes": "{{count}} اختبارات قادمة",
+    "students": "{{count}} طلاب",
+    "quiz_directory": "دليل الاختبارات",
+    "all_students": "جميع الطلاب"
   },
   "empty_state": {
     "no_data": "لا توجد بيانات!",
@@ -427,5 +443,11 @@
   "quizCard": {
     "enrolledStudents": "عدد الطلاب المسجلين",
     "open": "فتح"
+  },
+  "learner_quiz": {
+    "join": "انضم"
+  },
+  "quizzes": {
+    "create_success": "تم إنشاء الاختبار بنجاح"
   }
 }

@@ -9,8 +9,6 @@
         <h4 class="m-0 text-lg font-bold">{{ quiz().title }}</h4>
 
         <p-tag severity="info" [value]="groupName()" />
-        <span class="text-sm text-color-secondary">by instructor name</span>
-        <!-- group name -->
       </div>
 
       <div class="right flex align-items-center justify-content-center gap-4">
@@ -20,24 +18,15 @@
           <span>{{ quiz().schadule | date: 'h:mm a' }}</span>
         </div>
 
-        <!-- <p-tag severity="info" value="remaining time" /> -->
         <span class="remaining-time flex align-items-center gap-2 text-sm text-color-secondary">
           <i class="pi pi-circle-fill"></i>
           {{ remainingTime() }}
         </span>
-        <button class="action-btn" label="join" [routerLink]="['/dashboard/learner/quizzes']">
+        <button class="action-btn" [attr.aria-label]="'learner_quiz.join' | translate"
+          [routerLink]="['/dashboard/learner/quizzes']">
           <i class="pi pi-play"></i>
-          Join
+          {{ 'learner_quiz.join' | translate }}
         </button>
-        <!-- <p-button
-          styleClass="action-btn"
-          label="join"
-          [routerLink]="['/dashboard/learner/quizzes']"
-        >
-          <i class="pi pi-play"></i>
-
-          join
-        </p-button> -->
       </div>
     </div>
   </div>

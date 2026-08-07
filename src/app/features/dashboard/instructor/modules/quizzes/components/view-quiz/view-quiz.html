@@ -1,108 +1,85 @@
 @if (isLoading()) {
-  <app-loader></app-loader>
+<app-loader></app-loader>
 } @else if (quiz(); as quiz) {
-  <p-breadcrumb [model]="breadcrumbs" styleClass="!border-none !bg-transparent !p-0 mb-3">
-  </p-breadcrumb>
+<p-breadcrumb [model]="breadcrumbs" styleClass="!border-none !bg-transparent !p-0 mb-3">
+</p-breadcrumb>
 
-  <div class="quiz-card">
-    <h2>{{ quiz.title }}</h2>
+<div class="quiz-card">
+  <h2>{{ quiz.title }}</h2>
 
-    <div class="date-row">
-      <div class="date-item">
-        <i class="pi pi-calendar"></i>
-        {{ quiz.schadule | date: 'dd / MM / yyyy' }}
-      </div>
-
-      <div class="date-item">
-        <i class="pi pi-clock"></i>
-        {{ quiz.schadule | date: 'HH : mm' }}
-      </div>
+  <div class="date-row">
+    <div class="date-item">
+      <i class="pi pi-calendar"></i>
+      {{ quiz.schadule | date: 'dd / MM / yyyy' }}
     </div>
 
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.code' | translate }}</span>
-      <span>{{ quiz.code }}</span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.group' | translate }}</span>
-      <span>{{ groupName() || '-' }}</span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.duration' | translate }}</span>
-      <span>{{ quiz.duration }} {{ 'quiz_details.minutes' | translate }}</span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.number_of_questions' | translate }}</span>
-      <span>{{ quiz.questions_number }}</span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.score_per_question' | translate }}</span>
-      <span>{{ quiz.score_per_question }}</span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">
-        {{ 'quiz_details.difficulty' | translate }}
-      </span>
-
-      <span>
-        {{ 'quiz_details.difficulty_values.' + quiz.difficulty | translate }}
-      </span>
-    </div>
-
-    <div class="info-row">
-      <span class="label">{{ 'quiz_details.type' | translate }}</span>
-      <span>{{ 'quiz_details.type_values.' + quiz.type | translate }}</span>
-    </div>
-
-    <div class="description">
-      <div class="title">
-        {{ 'quiz_details.description' | translate }}
-      </div>
-
-      <p>
-        {{ quiz.description || '-' }}
-      </p>
-    </div>
-
-    <div class="flex justify-content-end gap-2 mt-5">
-      <button
-        pButton
-        class="delete-btn"
-        type="button"
-        [label]="'quiz_details.delete' | translate"
-        icon="pi pi-trash"
-        severity="danger"
-        (click)="openDeleteDialog()"
-      ></button>
-
-      <button
-        pButton
-        type="button"
-        [label]="'quiz_details.edit' | translate"
-        icon="pi pi-pencil"
-        class="edit-btn"
-        (click)="openEditDialog()"
-      ></button>
+    <div class="date-item">
+      <i class="pi pi-clock"></i>
+      {{ quiz.schadule | date: 'HH : mm' }}
     </div>
   </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.code' | translate }}</span>
+    <span>{{ quiz.code }}</span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.group' | translate }}</span>
+    <span>{{ groupName() || '-' }}</span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.duration' | translate }}</span>
+    <span>{{ quiz.duration }} {{ 'quiz_details.minutes' | translate }}</span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.number_of_questions' | translate }}</span>
+    <span>{{ quiz.questions_number }}</span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.score_per_question' | translate }}</span>
+    <span>{{ quiz.score_per_question }}</span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">
+      {{ 'quiz_details.difficulty' | translate }}
+    </span>
+
+    <span>
+      {{ 'quiz_details.difficulty_values.' + quiz.difficulty | translate }}
+    </span>
+  </div>
+
+  <div class="info-row">
+    <span class="label">{{ 'quiz_details.type' | translate }}</span>
+    <span>{{ 'quiz_details.type_values.' + quiz.type | translate }}</span>
+  </div>
+
+  <div class="description">
+    <div class="title">
+      {{ 'quiz_details.description' | translate }}
+    </div>
+
+    <p>
+      {{ quiz.description || '-' }}
+    </p>
+  </div>
+
+  <div class="flex justify-content-end gap-2 mt-5">
+    <button pButton class="delete-btn" type="button" [label]="'quiz_details.delete' | translate" icon="pi pi-trash"
+      severity="danger" (click)="openDeleteDialog()"></button>
+
+    <button pButton type="button" [label]="'quiz_details.edit' | translate" icon="pi pi-pencil" class="edit-btn"
+      (click)="openEditDialog()"></button>
+  </div>
+</div>
 }
 
 <p-toast></p-toast>
-<quiz-app-add-edit-quiz
-  [(visible)]="showDialog"
-  [loading]="addEditLoad()"
-  [quizToEdit]="selectedQuizForEdit()"
-  (submitForm)="editQuiz($event)"
-  [groups]="groupsOptions()"
-/>
-<!-- <quiz-app-add-edit-quiz
-  [(visible)]="showDialog"
-  [loading]="addEditLoad()"
-  (submitForm)="saveQuiz($event)"
-  [groups]="groupsOptions()"
-/> -->
+<quiz-app-add-edit-quiz [(visible)]="showDialog" [loading]="addEditLoad()" [quizToEdit]="selectedQuizForEdit()"
+  (submitForm)="editQuiz($event)" [groups]="groupsOptions()" />
+

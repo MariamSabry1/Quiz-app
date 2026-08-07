@@ -5,6 +5,7 @@ import { Loader } from '../../../../../shared/components/general/loader/loader';
 import { DashboardWidget } from '../../../../../shared/components/dashboard/dashboard-widget/dashboard-widget';
 import { IQuiz } from '../../modules/quizzes/interfaces/quiz';
 import { QuizzesService } from '../../modules/quizzes/services/quizzes.service';
+import { TranslatePipe } from '@ngx-translate/core';
 export interface StudentSummary {
   id: string;
   name: string;
@@ -14,7 +15,7 @@ export interface StudentSummary {
 }
 @Component({
   selector: 'app-instructor-home',
-  imports: [UpcomingQuizzesCard, Loader, DashboardWidget, TopStudentsCard],
+  imports: [UpcomingQuizzesCard, Loader, DashboardWidget, TopStudentsCard, TranslatePipe],
   templateUrl: './instructor-home.html',
   styleUrl: './instructor-home.scss',
 })

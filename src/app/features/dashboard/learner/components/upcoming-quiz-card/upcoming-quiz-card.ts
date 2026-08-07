@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { AuthService } from '../../../../auth/services/auth.service';
-import { formatDistanceToNow } from 'date-fns';
+import { TranslatePipe } from '@ngx-translate/core';
+//import { formatDistanceToNow } from 'date-fns';
 
 @Component({
   selector: 'quiz-app-upcoming-quiz-card',
-  imports: [DatePipe, RouterLink, TagModule],
+  imports: [DatePipe, RouterLink, TagModule,TranslatePipe],
   templateUrl: './upcoming-quiz-card.html',
   styleUrl: './upcoming-quiz-card.scss',
 })
@@ -54,9 +55,9 @@ export class UpcomingQuizCard implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log('quiz', this.quiz());
-    console.log('after ending ', formatDistanceToNow(this.quiz().schadule));
-    console.log('after ending ', this.remainingTime());
+    // console.log('quiz', this.quiz());
+    // // console.log('after ending ', formatDistanceToNow(this.quiz().schadule));
+    // console.log('after ending ', this.remainingTime());
   }
   //console.log(this.remaining); // Output: "in 3 days" (or similar, depending on the current date)
   // remainingTime = computed(() => {

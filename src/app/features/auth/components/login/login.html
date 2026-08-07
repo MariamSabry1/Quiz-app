@@ -1,46 +1,28 @@
-<app-auth-layout
-  [title]="'auth.login.title' | translate"
-  [iconsForLogin]="[
-    { icon: 'pi pi-user', label: 'Sign in', link: '/auth/login' },
-    { icon: 'pi pi-user-plus', label: 'Sign Up', link: '/auth/register' },
-  ]"
->
+<app-auth-layout [title]="'auth.login.title' | translate" [iconsForLogin]="[
+    { icon: 'pi pi-user', label: ('auth.register.signin_tab' | translate), link: '/auth/login' },
+    { icon: 'pi pi-user-plus', label: ('auth.register.signup_tab' | translate), link: '/auth/register' },
+  ]">
   <div class="h-full" auth-form class="login-container">
     <form class="pb-8" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <app-form-field
-        [control]="form.controls['email']"
-        type="email"
-        icon="pi pi-envelope"
-        [label]="'Registered email address'"
-        [placeholder]="'Type your email'"
+      <app-form-field [control]="form.controls['email']" type="email" icon="pi pi-envelope"
+        [label]="'auth.login.email_label' | translate" [placeholder]="'auth.login.email_placeholder' | translate"
         [errorMessages]="{
           required: 'auth.login.email_required',
           email: 'auth.login.email_invalid',
-        }"
-      ></app-form-field>
-      <app-form-field
-        [control]="form.controls['password']"
-        type="password"
-        icon="pi pi-key"
-        [label]="'Password'"
-        [placeholder]="'Type your password'"
+        }"></app-form-field>
+      <app-form-field [control]="form.controls['password']" type="password" icon="pi pi-key"
+        [label]="'auth.login.password_label' | translate" [placeholder]="'auth.login.password_placeholder' | translate"
         [errorMessages]="{
           required: 'auth.login.password_required',
           pattern: 'auth.login.password_pattern',
-        }"
-      ></app-form-field>
+        }"></app-form-field>
       <div class="flex align-items-center justify-content-between">
-        <p-button
-          type="submit"
-          [label]="'Sign In'"
-          icon="pi pi-check"
-          iconPos="right"
-          [loading]="loading()"
-          styleClass="form-btn"
-        >
+        <p-button type="submit" [label]="'auth.login.login_title' | translate" icon="pi pi-check" iconPos="right"
+          [loading]="loading()" styleClass="form-btn">
         </p-button>
         <p>
-          Forgot password? <a class="forget-link" [routerLink]="['/auth/forgot-password']">click here</a>
+          {{ 'auth.login.forgot_password' | translate }}
+          <a class="forget-link" [routerLink]="['/auth/forgot-password']">{{ 'auth.login.click_here' | translate }}</a>
         </p>
       </div>
     </form>

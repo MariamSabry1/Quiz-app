@@ -6,11 +6,11 @@ import { GroupOption, IQuiz } from '../../../instructor/modules/quizzes/interfac
 import { QuizzesService } from '../../../instructor/modules/quizzes/services/quizzes.service';
 import { MessageService } from 'primeng/api';
 import { UpcomingQuizCard } from '../upcoming-quiz-card/upcoming-quiz-card';
-import { GroupsService } from '../../../instructor/modules/group/services/groups.service';
-import { AuthService } from '../../../../auth/services/auth.service';
+//import { GroupsService } from '../../../instructor/modules/group/services/groups.service';
+//import { AuthService } from '../../../../auth/services/auth.service';
 import { Loader } from '../../../../../shared/components/general/loader/loader';
-import { Dialog } from 'primeng/dialog';
-import { LearnerResaultsList } from '../../modules/learner-results/components/learner-resaults-list/learner-resaults-list';
+// import { Dialog } from 'primeng/dialog';
+// import { LearnerResaultsList } from '../../modules/learner-results/components/learner-resaults-list/learner-resaults-list';
 
 @Component({
   selector: 'app-learner-home',
@@ -20,8 +20,7 @@ import { LearnerResaultsList } from '../../modules/learner-results/components/le
     WelcomeCard,
     UpcomingQuizCard,
     Loader,
-    Dialog,
-    LearnerResaultsList,
+   // LearnerResaultsList,
   ],
   providers: [MessageService],
   templateUrl: './learner-home.html',
@@ -42,6 +41,17 @@ export class LearnerHome implements OnInit {
     'https://www.shutterstock.com/shutterstock/photos/2708854355/display_1500/stock-photo-teacher-teaching-in-high-school-classroom-2708854355.jpg',
   ];
 
+   private imageCache = new Map<string, string>();
+
+  getQuizImage(quizId: string): string {
+    if (!this.imageCache.has(quizId)) {
+      const image = this.fackImages[Math.floor(Math.random() * this.fackImages.length)];
+      this.imageCache.set(quizId, image);
+    }
+    return this.imageCache.get(quizId)!;
+  }
+
+
   extractImageSrc(): string {
     return this.fackImages[Math.floor(Math.random() * this.fackImages.length)];
   }
@@ -61,8 +71,8 @@ export class LearnerHome implements OnInit {
         this.isLoading.set(false);
         this.messageService.add({
           severity: 'error',
-          summary: this.translate.instant('COMMON.ERROR'),
-          detail: err?.error?.message || 'Failed to load upcoming quizzes',
+          summary: this.translate.instant('common.error'),
+          detail: err?.error?.message || this.translate.instant('common.failed_to_load_Quizzes'),
         });
       },
     });

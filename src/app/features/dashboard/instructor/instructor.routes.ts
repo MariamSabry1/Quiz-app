@@ -4,6 +4,9 @@ export const INSTRUCTOR_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./components/instructor-home/instructor-home').then((c) => c.InstructorHome),
+    data: {
+      title: 'navigation.dashboard',
+    },
   },
   {
     path: 'groups',
@@ -12,7 +15,7 @@ export const INSTRUCTOR_ROUTES: Routes = [
         (c) => c.GroupsList,
       ),
     data: {
-      title: 'Groups',
+      title: 'navigation.groups',
     },
   },
   {
@@ -22,12 +25,15 @@ export const INSTRUCTOR_ROUTES: Routes = [
         (c) => c.StudentList,
       ),
     data: {
-      title: 'Students',
+      title: 'navigation.students',
     },
   },
   {
     path: 'quizzes',
     loadChildren: () => import('../instructor/modules/quizzes/quizzes.route').then((r) => r.QUIZZES_ROUTES),
+    data: {
+      title: 'navigation.quizzes',
+    },
   },
   {
     path: 'results',
@@ -39,5 +45,8 @@ export const INSTRUCTOR_ROUTES: Routes = [
       import('../instructor/modules/questions/components/questions-list/questions-list').then(
         (c) => c.QuestionsList,
       ),
+    data: {
+      title: 'navigation.questions',
+    },
   },
 ];

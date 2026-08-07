@@ -5,24 +5,24 @@
       <i class="pi pi-check"></i>
     </div>
 
-    <h2>{{ title() }}</h2>
+    <h2>{{ title() || ('quiz_code_dialog.success_title' | translate) }}</h2>
 
     <div class="quiz-code">
-      <div class="label">CODE</div>
+      <div class="label">{{ 'quiz_code_dialog.code_label' | translate | uppercase }}</div>
 
       <div class="value">
         {{ code() }}
       </div>
 
-      <button pButton text (click)="copyCode()">
+      <p-button text (click)="copyCode()">
         @if (!copied()) {
         <i class="pi pi-copy"></i>
         } @else {
         <i class="pi pi-check"></i>
         }
-      </button>
+      </p-button>
     </div>
 
-    <button pButton label="Close" class="close-btn" (click)="closeDialog()">Close</button>
+    <p-button [label]="'common.close' | translate" [styleClass]="'close-btn'" (click)="closeDialog()"></p-button>
   </div>
 </p-dialog>

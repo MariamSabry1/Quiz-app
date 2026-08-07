@@ -1,57 +1,37 @@
 @if (isLoading()) {
-  <app-loader></app-loader>
+<app-loader></app-loader>
 } @else {
-  <div class="p-4">
-    <div class="flex flex-column lg:flex-row gap-4 align-items-start">
-      <div class="flex gap-3 flex-wrap justify-content-center lg:justify-content-start">
-        <!-- set up new quiz -->
-        <quiz-app-button-linker-card
-          [icon]="'/images/new-quiz-icon.svg'"
-          [title]="'QUIZZES.SET_UP_NEW' | translate"
-          (cardClick)="openAddDialog()"
-        ></quiz-app-button-linker-card>
+<div class="p-4">
+  <div class="flex flex-column lg:flex-row gap-4 align-items-start">
+    <div class="flex gap-3 flex-wrap justify-content-center lg:justify-content-start">
+      <!-- set up new quiz -->
+      <quiz-app-button-linker-card [icon]="'/images/new-quiz-icon.svg'" [title]="'QUIZZES.SET_UP_NEW' | translate"
+        (cardClick)="openAddDialog()"></quiz-app-button-linker-card>
 
-        <!--  question bank -->
-        <quiz-app-button-linker-card
-          [icon]="'/images/question-bank.png'"
-          [title]="'QUIZZES.QUESTION_BANK' | translate"
-          [routerLink]="['../questions']"
-        ></quiz-app-button-linker-card>
-      </div>
+      <!--  question bank -->
+      <quiz-app-button-linker-card [icon]="'/images/question-bank.png'" [title]="'QUIZZES.QUESTION_BANK' | translate"
+        [routerLink]="['../questions']"></quiz-app-button-linker-card>
+    </div>
 
-      <div class="right-column flex flex-column gap-4 flex-1">
-        <!--  Upcoming Quizzes Box -->
-        <quiz-app-dashboard-widget
-          [title]="'upcoming &nbsp;' + upcomingQuizzes().length + '&nbsp; quizzes'"
-        >
-          <div class="flex flex-column gap-3">
-            @for (quiz of upcomingQuizzes(); track quiz._id) {
-              <quiz-app-upcoming-quizzes-card
-                [routingLink]="'view-quiz'"
-                [quiz]="quiz"
-              ></quiz-app-upcoming-quizzes-card>
-            }
-          </div>
-        </quiz-app-dashboard-widget>
+    <div class="right-column flex flex-column gap-4 flex-1">
+      <!--  Upcoming Quizzes Box -->
+      <quiz-app-dashboard-widget [title]="'upcoming &nbsp;' + upcomingQuizzes().length + '&nbsp; quizzes'">
+        <div class="flex flex-column gap-3">
+          @for (quiz of upcomingQuizzes(); track quiz._id) {
+          <quiz-app-upcoming-quizzes-card [routingLink]="'view-quiz'" [quiz]="quiz"></quiz-app-upcoming-quizzes-card>
+          }
+        </div>
+      </quiz-app-dashboard-widget>
 
-        <!--  Completed Quizzes Box -->
-        <quiz-app-completed-quizzes-widget
-          [quizzes]="completedQuizzesWithGroupNames()"
-        ></quiz-app-completed-quizzes-widget>
-      </div>
+      <!--  Completed Quizzes Box -->
+      <quiz-app-completed-quizzes-widget
+        [quizzes]="completedQuizzesWithGroupNames()"></quiz-app-completed-quizzes-widget>
     </div>
   </div>
+</div>
 }
-
 <p-toast></p-toast>
-<quiz-app-add-edit-quiz
-  [(visible)]="showDialog"
-  [loading]="addEditLoad()"
-  [quizToEdit]="selectedQuizForEdit()"
-  (submitForm)="saveQuiz($event)"
-  [groups]="groupsOptions()"
-/>
-<quiz-app-quiz-code-dialog
-  [(visible)]="showSuccessDialog"
-  [code]="quizCode()"
-></quiz-app-quiz-code-dialog>
+<quiz-app-add-edit-quiz [(visible)]="showDialog" [loading]="addEditLoad()" [quizToEdit]="selectedQuizForEdit()"
+  (submitForm)="saveQuiz($event)" [groups]="groupsOptions()" />
+
+<app-quiz-code-dialog [(visible)]="showSuccessDialog" [code]="quizCode()"></app-quiz-code-dialog>

@@ -1,36 +1,22 @@
-<p-dialog
-  [modal]="true"
-  [visible]="visible()"
-  [showHeader]="false"
-  styleClass="quiz-form-dialog"
-  [style]="{ width: '50rem', maxWidth: '95vw' }"
-  [breakpoints]="{
+<p-dialog [modal]="true" [visible]="visible()" [showHeader]="false" styleClass="quiz-form-dialog"
+  [style]="{ width: '50rem', maxWidth: '95vw' }" [breakpoints]="{
     '1280px': '95vw',
     '1024px': '80vw',
     '768px': '90vw',
     '640px': '80vw',
-  }"
-  (onHide)="close()"
-  (visibleChange)="visibleChange.emit($event)"
->
+  }" (onHide)="close()" (visibleChange)="visibleChange.emit($event)">
   <div class="quiz-dialog-header flex align-items-center justify-content-between">
     <span class="quiz-dialog-title">
       {{
-        isEditMode ? ('QUIZZES.setup_title_edit' | translate) : ('QUIZZES.setup_title' | translate)
+      isEditMode ? ('QUIZZES.setup_title_edit' | translate) : ('QUIZZES.setup_title' | translate)
       }}
     </span>
     <div class="flex align-items-center gap-2">
-      <button
-        type="button"
-        class="icon-btn icon-btn-border"
-        (click)="save()"
-        [disabled]="loading()"
-        aria-label="Save"
-      >
+      <button type="button" class="icon-btn icon-btn-border" (click)="save()" [disabled]="loading()" aria-label="Save">
         @if (loading()) {
-          <i class="pi pi-spin pi-spinner"></i>
+        <i class="pi pi-spin pi-spinner"></i>
         } @else {
-          <i class="pi pi-check"></i>
+        <i class="pi pi-check"></i>
         }
       </button>
       <button type="button" class="icon-btn" (click)="close()" aria-label="Close">
@@ -49,11 +35,11 @@
         <input id="title" pInputText formControlName="title" />
       </div>
       @if (form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)) {
-        @if (form.get('title')?.hasError('required')) {
-          <small class="text-red-500">{{ 'QUIZZES.validation.title_required' | translate }}</small>
-        } @else if (form.get('title')?.hasError('minlength')) {
-          <small class="text-red-500">{{ 'QUIZZES.validation.title_minlength' | translate }}</small>
-        }
+      @if (form.get('title')?.hasError('required')) {
+      <small class="text-red-500">{{ 'QUIZZES.validation.title_required' | translate }}</small>
+      } @else if (form.get('title')?.hasError('minlength')) {
+      <small class="text-red-500">{{ 'QUIZZES.validation.title_minlength' | translate }}</small>
+      }
       }
     </div>
 
@@ -62,17 +48,11 @@
       <div class="col-12 md:col-4">
         <div class="input-group">
           <label class="input-label" for="duration">{{ 'QUIZZES.duration' | translate }}</label>
-          <p-inputNumber
-            inputId="duration"
-            formControlName="duration"
-            [showButtons]="true"
-            [min]="1"
-            suffix=" min"
-          />
+          <p-inputNumber inputId="duration" formControlName="duration" [showButtons]="true" [min]="1" suffix=" min" />
         </div>
         @if (form.get('duration')?.invalid && form.get('duration')?.touched) {
-          <small class="text-red-500">{{
-            'QUIZZES.validation.duration_required' | translate
+        <small class="text-red-500">{{
+          'QUIZZES.validation.duration_required' | translate
           }}</small>
         }
       </div>
@@ -81,17 +61,12 @@
         <div class="input-group">
           <label class="input-label" for="questions_number">{{
             'QUIZZES.questions_number' | translate
-          }}</label>
-          <p-inputNumber
-            inputId="questions_number"
-            formControlName="questions_number"
-            [showButtons]="true"
-            [min]="1"
-          />
+            }}</label>
+          <p-inputNumber inputId="questions_number" formControlName="questions_number" [showButtons]="true" [min]="1" />
         </div>
         @if (form.get('questions_number')?.invalid && form.get('questions_number')?.touched) {
-          <small class="text-red-500">{{
-            'QUIZZES.validation.questions_number_required' | translate
+        <small class="text-red-500">{{
+          'QUIZZES.validation.questions_number_required' | translate
           }}</small>
         }
       </div>
@@ -100,16 +75,12 @@
         <div class="input-group">
           <label class="input-label" for="score_per_question">{{
             'QUIZZES.score_per_question' | translate
-          }}</label>
-          <p-inputNumber
-            inputId="score_per_question"
-            formControlName="score_per_question"
-            [showButtons]="true"
-            [min]="1"
-          />
+            }}</label>
+          <p-inputNumber inputId="score_per_question" formControlName="score_per_question" [showButtons]="true"
+            [min]="1" />
         </div>
         @if (form.get('score_per_question')?.invalid && form.get('score_per_question')?.touched) {
-          <small class="text-red-500">{{ 'QUIZZES.validation.score_required' | translate }}</small>
+        <small class="text-red-500">{{ 'QUIZZES.validation.score_required' | translate }}</small>
         }
       </div>
     </div>
@@ -121,11 +92,11 @@
         <input id="description" pInputText formControlName="description" />
       </div>
       @if (
-        form.get('description')?.invalid &&
-        (form.get('description')?.dirty || form.get('description')?.touched)
+      form.get('description')?.invalid &&
+      (form.get('description')?.dirty || form.get('description')?.touched)
       ) {
-        <small class="text-red-500">{{
-          'QUIZZES.validation.description_required' | translate
+      <small class="text-red-500">{{
+        'QUIZZES.validation.description_required' | translate
         }}</small>
       }
     </div>
@@ -134,15 +105,10 @@
     <div class="col-6">
       <div class="input-group">
         <label class="input-label" for="schadule">{{ 'QUIZZES.schedule_date' | translate }}</label>
-        <p-datepicker
-          formControlName="schadule"
-          inputId="calendar-12h"
-          [showTime]="true"
-          [hourFormat]="'12'"
-        />
+        <p-datepicker formControlName="schadule" inputId="calendar-12h" [showTime]="true" [hourFormat]="'12'" />
       </div>
       @if (form.get('schadule')?.invalid && form.get('schadule')?.touched) {
-        <small class="text-red-500">{{ 'QUIZZES.validation.schedule_required' | translate }}</small>
+      <small class="text-red-500">{{ 'QUIZZES.validation.schedule_required' | translate }}</small>
       }
     </div>
 
@@ -151,19 +117,12 @@
       <div class="col-12 md:col-4">
         <div class="input-group select-question">
           <label class="input-label" for="difficulty">{{ 'QUIZZES.difficulty' | translate }}</label>
-          <p-select
-            inputId="difficulty"
-            formControlName="difficulty"
-            [options]="difficultyOptions"
-            optionLabel="label"
-            optionValue="value"
-            appendTo="body"
-            placeholder="Entry"
-          />
+          <p-select inputId="difficulty" formControlName="difficulty" [options]="difficultyOptions" optionLabel="label"
+            optionValue="value" appendTo="body" placeholder="Entry" />
         </div>
         @if (form.get('difficulty')?.invalid && form.get('difficulty')?.touched) {
-          <small class="text-red-500">{{
-            'QUIZZES.validation.difficulty_required' | translate
+        <small class="text-red-500">{{
+          'QUIZZES.validation.difficulty_required' | translate
           }}</small>
         }
       </div>
@@ -171,36 +130,22 @@
       <div class="col-12 md:col-4">
         <div class="input-group select-question">
           <label class="input-label" for="type">{{ 'QUIZZES.category_type' | translate }}</label>
-          <p-select
-            inputId="type"
-            formControlName="type"
-            [options]="categoryTypeOptions"
-            optionLabel="label"
-            optionValue="value"
-            appendTo="body"
-            placeholder="FE"
-          />
+          <p-select inputId="type" formControlName="type" [options]="categoryTypeOptions" optionLabel="label"
+            optionValue="value" appendTo="body" placeholder="FE" />
         </div>
         @if (form.get('type')?.invalid && form.get('type')?.touched) {
-          <small class="text-red-500">{{ 'QUIZZES.validation.type_required' | translate }}</small>
+        <small class="text-red-500">{{ 'QUIZZES.validation.type_required' | translate }}</small>
         }
       </div>
 
       <div class="col-12 md:col-4">
         <div class="input-group select-question">
           <label class="input-label" for="group">{{ 'QUIZZES.group_name' | translate }}</label>
-          <p-select
-            inputId="group"
-            formControlName="group"
-            [options]="groups()"
-            optionLabel="label"
-            optionValue="value"
-            appendTo="body"
-            [placeholder]="'QUIZZES.select_group' | translate"
-          />
+          <p-select inputId="group" formControlName="group" [options]="groups()" optionLabel="label" optionValue="value"
+            appendTo="body" [placeholder]="'QUIZZES.select_group' | translate" />
         </div>
         @if (form.get('group')?.invalid && form.get('group')?.touched) {
-          <small class="text-red-500">{{ 'QUIZZES.validation.group_required' | translate }}</small>
+        <small class="text-red-500">{{ 'QUIZZES.validation.group_required' | translate }}</small>
         }
       </div>
     </div>

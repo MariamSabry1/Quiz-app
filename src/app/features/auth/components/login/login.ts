@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { RoleEnum } from '../../../../core/enum/role.enum';
 @Component({
   selector: 'app-login',
-  imports: [AuthLayout, FormField, Button, RouterLink, TranslatePipe, ReactiveFormsModule],
+  imports: [AuthLayout, TranslatePipe,FormField, Button, RouterLink, TranslatePipe, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

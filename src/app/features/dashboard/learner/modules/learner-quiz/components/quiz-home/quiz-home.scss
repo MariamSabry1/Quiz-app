@@ -15,7 +15,8 @@
   box-sizing: border-box;
   background: #ffffff;
   border-radius: 10px;
-  padding: 82px 114.5px 0;
+  padding-block-start: 82px;
+  padding-inline: 114.5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +24,7 @@
 
 .dialog-title {
   margin: 0 0 43px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-base, 'Inter', 'Cairo', sans-serif);
   font-weight: 700;
   font-size: 30px;
   line-height: 100%;
@@ -35,7 +36,7 @@
 .dialog-subtitle {
   width: 421px;
   margin: 0 0 33px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-base, 'Inter', 'Cairo', sans-serif);
   font-weight: 500;
   font-size: 18px;
   line-height: 100%;
@@ -56,11 +57,11 @@
     align-items: center;
     background: #fbd9c9;
     color: #000000;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-base, 'Inter', 'Cairo', sans-serif);
     font-weight: 700;
     font-size: 20px;
     line-height: 100%;
-    padding: 0 1rem;
+    padding-inline: 1rem;
     white-space: nowrap;
   }
 
@@ -68,8 +69,11 @@
     flex: 1;
     border: none !important;
     box-shadow: none !important;
-    padding: 0.85rem 1.25rem !important;
+    padding-block: 0.85rem !important;
+    padding-inline: 1.25rem !important;
     font-size: 0.95rem;
+    text-align: start;
+    direction: inherit;
 
     &:focus {
       outline: none !important;
@@ -79,7 +83,7 @@
 
 .dialog-actions {
   margin-top: auto;
-  display: flex;
+  display: flex; 
 }
 
 .round-btn {
@@ -106,13 +110,14 @@
 }
 
 .confirm-btn {
-  border-radius: 10px 0 0 0;
+  border-start-start-radius: 10px;
 }
 
 .cancel-btn {
-  border-radius: 0 10px 0 0;
-  margin-left: -1px;
+  border-start-end-radius: 10px;
+  margin-inline-start: -1px;
 }
+
 .code-input-wrapper.error {
   border-color: #dc2626 !important;
 }

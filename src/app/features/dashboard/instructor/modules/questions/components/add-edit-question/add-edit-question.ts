@@ -1,5 +1,4 @@
 import { Component, EventEmitter, inject, Input, Output, signal, SimpleChanges } from '@angular/core';
-import { QuestionsService } from '../../services/questions.service';
 import { ICreateQuestionData, IQuestion } from '../../interfaces/questions';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -48,10 +47,6 @@ export class AddEditQuestion {
 
   constructor() {
     this.formInit();
-  }
-
-  ngOnInit(): void {
-
   }
 
   formInit(): void {

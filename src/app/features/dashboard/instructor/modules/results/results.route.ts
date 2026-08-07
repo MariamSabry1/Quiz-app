@@ -5,7 +5,7 @@ export const RESULTS_ROUTES: Routes = [
     loadComponent: () =>
       import('./components/results-list/results-list').then((c) => c.ResultsList),
     data: {
-      title: 'Results',
+      title: 'navigation.results',
     },
   },
   {
@@ -15,7 +15,7 @@ export const RESULTS_ROUTES: Routes = [
         (c) => c.ViewResult,
       ),
     data: {
-      title: 'View Result',
+      title: 'navigation.view_result',
     },
   },
 ];

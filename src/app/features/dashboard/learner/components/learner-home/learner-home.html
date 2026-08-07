@@ -3,21 +3,16 @@
     <quiz-app-welcome-card></quiz-app-welcome-card>
   </section>
   @if (isLoading()) {
-    <app-loader></app-loader>
+  <app-loader></app-loader>
   } @else {
-    <quiz-app-dashboard-widget
-      [title]="'learnerDashboard.upcomingQuizzes' | translate"
-      class="landding-page__upcoming-quizzes"
-    >
-      <div class="flex flex-column gap-3">
-        @for (quiz of upcomingQuizzes(); track quiz._id) {
-          <quiz-app-upcoming-quiz-card
-            [quiz]="quiz"
-            [showRouting]="false"
-            [imgSrc]="extractImageSrc()"
-          ></quiz-app-upcoming-quiz-card>
-        }
-      </div>
-    </quiz-app-dashboard-widget>
+  <quiz-app-dashboard-widget [title]="'learnerDashboard.upcomingQuizzes' | translate"
+    class="landding-page__upcoming-quizzes">
+    <div class="flex flex-column gap-3">
+      @for (quiz of upcomingQuizzes(); track quiz._id) {
+      <quiz-app-upcoming-quiz-card [quiz]="quiz" [showRouting]="false"
+        [imgSrc]="getQuizImage(quiz._id)"></quiz-app-upcoming-quiz-card>
+      }
+    </div>
+  </quiz-app-dashboard-widget>
   }
 </div>

@@ -4,14 +4,14 @@ export const QUIZZES_ROUTES: Routes = [
     path: '',
     loadComponent: () => import('./components/quiz-list/quiz-list').then((c) => c.QuizList),
     data: {
-      title: 'Quizzez',
+      title: 'navigation.quizzes',
     },
   },
   {
     path: 'view-quiz/:id',
     loadComponent: () => import('./components/view-quiz/view-quiz').then((c) => c.ViewQuiz),
     data: {
-      title: 'View Quiz',
+      title: 'navigation.view_quiz',
     },
   },
 ];

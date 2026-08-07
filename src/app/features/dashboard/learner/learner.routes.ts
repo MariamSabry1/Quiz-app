@@ -9,7 +9,7 @@ export const LEARNER_ROUTES: Routes = [
     path: 'quizzes',
     loadComponent: () => import('./modules/learner-quiz/components/quiz-home/quiz-home').then((c) => c.QuizHome),
     data: {
-      title: 'Quizzez',
+      title: 'navigation.quizzes',
     },
   },
   {
@@ -18,6 +18,9 @@ export const LEARNER_ROUTES: Routes = [
       import('./modules/learner-results/components/learner-resaults-list/learner-resaults-list').then(
         (c) => c.LearnerResaultsList,
       ),
+       data: {
+      title: 'navigation.results',
+    },
   },
   {
     path: 'results/:id',
@@ -26,7 +29,7 @@ export const LEARNER_ROUTES: Routes = [
         (c) => c.LearnerResultDetails,
       ),
     data: {
-      title: 'View Result',
+      title: 'navigation.view_result',
     },
   },
 ];

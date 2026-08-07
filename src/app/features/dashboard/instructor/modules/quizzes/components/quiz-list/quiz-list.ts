@@ -127,7 +127,9 @@ export class QuizList implements OnInit {
     this.selectedQuizForEdit.set(quiz);
     this.showDialog.set(true);
   }
+
   saveQuiz(data: IQuizPayload): void {
+    console.log('Saving quiz with data:', data);
     this.addEditLoad.set(true);
     const isEdit = !!this.selectedQuizForEdit();
     console.log(isEdit);
@@ -141,6 +143,7 @@ export class QuizList implements OnInit {
         this.showDialog.set(false);
 
         if (!isEdit) {
+          console.log('Quiz created with code:', res.data.code);
           this.quizCode.set(res.data.code);
           this.showSuccessDialog.set(true);
         } else {

@@ -102,7 +102,12 @@
     "questions": "Questions",
     "quizzes": "Quizzes",
     "groups": "Groups",
-    "results": "Results"
+    "results": "Results",
+    "view_quiz": "View Quiz",
+    "view_result": "View Result"
+  },
+  "dashboard_layout": {
+    "new_quiz": "New quiz"
   },
   "account": {
     "profile": "Profile",
@@ -331,7 +336,6 @@
     "JOIN_QUIZ": "Join Quiz",
     "JOIN_CODE_HINT": "Input the code received for the quiz below to join",
     "CODE": "Code",
-
     "PLEASE_ENTER_CODE": "Please enter your code",
     "UPCOMING_QUIZZES_TITLE": "{{count}} Quizzes"
   },
@@ -402,15 +406,12 @@
     },
     "view": "View"
   },
-
   "learnerDashboard": {
     "welcome": "Welcome back,",
     "subtitle": "Continue your learning journey and complete your upcoming quizzes.",
     "ExploreBtn": "Explore All Quizzes",
     "upcomingQuizzes": "Upcoming Quizzes"
-
-  }
-,
+  },
   "result_details": {
     "results": "Results",
     "student_name": "Student name",
@@ -427,7 +428,18 @@
     "validation": {
       "required": "This Field is required"
     },
-    "something_went_wrong": "Sorry, Something went wrong ."
+    "something_went_wrong": "Sorry, Something went wrong .",
+    "failed_to_load_Quizzes": "Failed to load upcoming quizzes"
+  },
+  "quiz_code_dialog": {
+    "success_title": "Quiz was successfully created",
+    "code_label": "Code"
+  },
+  "instructor_home": {
+    "upcoming_quizzes": "{{count}} upcoming quizzes",
+    "students": "{{count}} students",
+    "quiz_directory": "Quiz directory",
+    "all_students": "All students"
   },
   "empty_state": {
     "no_data": "No Data!",
@@ -439,5 +451,11 @@
   "quizCard": {
     "enrolledStudents": "No. of students enrolled",
     "open": "Open"
+  },
+  "learner_quiz": {
+    "join": "Join"
+  },
+  "quizzes": {
+    "create_success": "Quiz is created Successfully"
   }
 }

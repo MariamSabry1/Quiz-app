@@ -47,37 +47,62 @@
       font-size: 10px;
     }
   }
-
+  h4{ font-family: var(--font-en);}
   .p-component.p-tag {
     width: fit-content;
+    font-family: var(--font-en);
   }
 }
-:host ::ng-deep {
-  .action-btn {
-    padding: 8px 25px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    transition: all 0.2s ease;
-    background-color: #22c589;
-    border-color: #22c589;
-    border-radius: 10px;
 
-    &:hover {
-      background-color: #0c5e40;
-      border-color: #0c5e40;
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 28px;
+  font-family: var(--font-base);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+  background: linear-gradient(135deg, #22c589 0%, #1aa876 100%);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(34, 197, 137, 0.25);
 
-    &:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
+  .pi {
+    font-size: 13px;
+    transition: transform 0.25s ease;
+  }
 
-    &:focus {
-      box-shadow: 0 0 0 3px rgba(197, 216, 109, 0.35);
+  &:hover {
+    background: linear-gradient(135deg, #0c5e40 0%, #094a33 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(12, 94, 64, 0.3);
+
+    .pi {
+      transform: translateX(2px) scale(1.1);
     }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(12, 94, 64, 0.2);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px rgba(197, 216, 109, 0.5),
+      0 8px 16px rgba(12, 94, 64, 0.2);
+  }
+
+  &:disabled {
+    background: #a0a0a0;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
   }
 }
